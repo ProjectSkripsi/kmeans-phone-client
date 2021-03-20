@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import DropzoneComponent from 'react-dropzone-component';
 import 'dropzone/dist/min/dropzone.min.css';
-import { baseUrl } from '../../../constants/defaultValues';
-
+// import { baseUrl } from '../../../constants/defaultValues';
+const baseUrl = `https://bp-paud.arul21.com/api/v1`;
 const ReactDOMServer = require('react-dom/server');
 
 const dropzoneComponentConfig = {

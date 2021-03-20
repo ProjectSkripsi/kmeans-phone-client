@@ -70,7 +70,7 @@ const Login = ({ history, loading, error, loginUserAction, isLogin }) => {
         <Colxx xxs="12" md="10" className="mx-auto my-auto">
           <Card className="auth-card">
             <div className="position-relative image-side ">
-              <p className="text-white h2">BP-PAUD & DIKMAS Sulawesi Selatan</p>
+              <p className="text-white h2">MYPHONE ADMIN</p>
               <p className="white mb-0">
                 Silahkan gunakan email & password untuk login.
                 <br />
@@ -87,7 +87,7 @@ const Login = ({ history, loading, error, loginUserAction, isLogin }) => {
                   <NavLink to="/" className="white">
                     {/* <span className="logo-single" /> */}
                     <img
-                      src="/assets/logos/white-full.png"
+                      src="/assets/logos/myphone.png"
                       alt="Logo"
                       href="/"
                       height="80"
@@ -96,9 +96,7 @@ const Login = ({ history, loading, error, loginUserAction, isLogin }) => {
                   </NavLink>
                 </Col>
                 <Col xs="10">
-                  <p className="text-black h5 ml-3 mt-4">
-                    BP-PAUD & DIKMAS Sulawesi Selatan
-                  </p>
+                  {/* <p className="text-black h5 ml-3 mt-4">MYPHONE ADMIN</p> */}
                 </Col>
               </Row>
 

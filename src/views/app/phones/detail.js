@@ -40,7 +40,6 @@ const DetailsPages = ({ match, intl, history, getModelByIdAction }) => {
 
   useEffect(() => {}, []);
 
-  console.log(data);
   const { images } = data;
   const output =
     images && images.map((elm) => ({ id: elm._id, img: elm.imageUrl }));

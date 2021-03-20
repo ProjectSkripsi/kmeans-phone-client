@@ -2,10 +2,11 @@ import axios from 'axios';
 import { baseUrl } from '../../constants/defaultValues';
 import { getToken } from '../../helpers/Utils';
 
-export const sumbitModelService = async (data) => {
+export const sumbitPhoneService = async (data) => {
   const token = getToken();
+
   try {
-    const response = await axios.post(`${baseUrl}/model/create`, data, {
+    const response = await axios.post(`${baseUrl}/phone`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -16,11 +17,11 @@ export const sumbitModelService = async (data) => {
   }
 };
 
-export const deleteModelService = async (ids) => {
+export const deletePhoneService = async (ids) => {
   const token = getToken();
   try {
     const response = await axios.post(
-      `${baseUrl}/model/delete`,
+      `${baseUrl}/phone/delete`,
       { ids },
       {
         headers: {
@@ -81,17 +82,17 @@ export const updateCurriculumService = async (title, fileUrl) => {
 
 export const getModelByIdService = async (id) => {
   try {
-    const response = await axios.get(`${baseUrl}/model/${id}`);
+    const response = await axios.get(`${baseUrl}/phone/${id}`);
     return response;
   } catch ({ response }) {
     return response;
   }
 };
 
-export const updateModelService = async (data, id) => {
+export const updatePhoneService = async (data, id) => {
   const token = getToken();
   try {
-    const response = await axios.put(`${baseUrl}/model/update/${id}`, data, {
+    const response = await axios.put(`${baseUrl}/phone/${id}`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

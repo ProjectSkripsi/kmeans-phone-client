@@ -1,59 +1,59 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import {
-  SUBMIT_NEW_MODEL_REQUEST,
-  DELETE_MODEL_REQUEST,
+  SUBMIT_NEW_PHONE_REQUEST,
+  DELETE_PHONE_REQUEST,
   PUBLISH_MODEL_REQUEST,
   UPDATE_CURRICULUM_REQUEST,
   GET_MODEL_BY_ID_REQUEST,
-  UPDATE_MODEL_REQUEST,
+  UPDATE_PHONE_REQUEST,
 } from '../actions';
 import {
-  sumbitModelSuccess,
-  sumbitModelError,
-  deleteModelSuccess,
-  deleteModelError,
+  sumbitPhoneSuccess,
+  sumbitPhoneError,
+  deletePhoneSuccess,
+  deletePhoneError,
   publishModelSuccess,
   publishModelError,
   updateCurriculumSuccess,
   updateCurriculumError,
   getModelByIdSuccess,
   getModelByIdError,
-  updateModelSuccess,
-  updateModelError,
+  updatePhoneError,
+  updatePhoneSuccess,
 } from './actions';
 import {
-  sumbitModelService,
-  deleteModelService,
+  sumbitPhoneService,
+  deletePhoneService,
   publishModelService,
   updateCurriculumService,
   getModelByIdService,
-  updateModelService,
+  updatePhoneService,
 } from './services';
 
 function* submitModelSaga({ payload }) {
   try {
-    const response = yield call(sumbitModelService, payload);
+    const response = yield call(sumbitPhoneService, payload);
     const { callBack } = payload;
     if (callBack) {
       callBack(response);
     }
-    yield put(sumbitModelSuccess(response));
+    yield put(sumbitPhoneSuccess(response));
   } catch (error) {
-    yield put(sumbitModelError(error));
+    yield put(sumbitPhoneError(error));
   }
 }
 
-function* deleteModelSaga({ payload }) {
+function* deletePhoneSaga({ payload }) {
   const { ids } = payload;
   try {
-    const response = yield call(deleteModelService, ids);
+    const response = yield call(deletePhoneService, ids);
     const { callBack } = payload;
     if (callBack) {
       callBack(response);
     }
-    yield put(deleteModelSuccess(response));
+    yield put(deletePhoneSuccess(response));
   } catch (error) {
-    yield put(deleteModelError(error));
+    yield put(deletePhoneError(error));
   }
 }
 
@@ -99,26 +99,26 @@ function* getModelByIdSaga({ payload }) {
   }
 }
 
-function* updateModelSaga({ payload }) {
+function* updatePhoneSaga({ payload }) {
   const { data, id } = payload;
   try {
-    const response = yield call(updateModelService, data, id);
+    const response = yield call(updatePhoneService, data, id);
     const { callBack } = payload;
     if (callBack) {
       callBack(response);
     }
-    yield put(updateModelSuccess(response));
+    yield put(updatePhoneSuccess(response));
   } catch (error) {
-    yield put(updateModelError(error));
+    yield put(updatePhoneError(error));
   }
 }
 
-export function* watchSubmitModelSaga() {
-  yield takeEvery(SUBMIT_NEW_MODEL_REQUEST, submitModelSaga);
+export function* watchSubmitPhoneSaga() {
+  yield takeEvery(SUBMIT_NEW_PHONE_REQUEST, submitModelSaga);
 }
 
-export function* watchDeleteModelSaga() {
-  yield takeEvery(DELETE_MODEL_REQUEST, deleteModelSaga);
+export function* watchDeletePhoneSaga() {
+  yield takeEvery(DELETE_PHONE_REQUEST, deletePhoneSaga);
 }
 
 export function* watchPublishModelSaga() {
@@ -133,15 +133,15 @@ export function* watchGetModelByIdSaga() {
   yield takeEvery(GET_MODEL_BY_ID_REQUEST, getModelByIdSaga);
 }
 
-export function* watchUpdateModelSaga() {
-  yield takeEvery(UPDATE_MODEL_REQUEST, updateModelSaga);
+export function* watchUpdatPhoneSaga() {
+  yield takeEvery(UPDATE_PHONE_REQUEST, updatePhoneSaga);
 }
 
 export default function* rootSaga() {
-  yield all([fork(watchSubmitModelSaga)]);
-  yield all([fork(watchDeleteModelSaga)]);
+  yield all([fork(watchSubmitPhoneSaga)]);
+  yield all([fork(watchDeletePhoneSaga)]);
   yield all([fork(watchPublishModelSaga)]);
   yield all([fork(watchUpdateCurriculumSaga)]);
   yield all([fork(watchGetModelByIdSaga)]);
-  yield all([fork(watchUpdateModelSaga)]);
+  yield all([fork(watchUpdatPhoneSaga)]);
 }

@@ -4,7 +4,7 @@ import todoSagas from './todo/saga';
 
 import surveyListSagas from './surveyList/saga';
 import surveyDetailSagas from './surveyDetail/saga';
-import modelSagas from './model/saga';
+import phoneSagas from './phone/saga';
 
 export default function* rootSaga(getState) {
   yield all([
@@ -12,6 +12,6 @@ export default function* rootSaga(getState) {
     todoSagas(),
     surveyListSagas(),
     surveyDetailSagas(),
-    modelSagas(),
+    phoneSagas(),
   ]);
 }

@@ -1,7 +1,7 @@
 {
-  "name": "decision-support-system",
+  "name": "myphone.com",
   "version": "5.2.0",
-  "description": "decision-support-system",
+  "description": "myphone.com",
   "private": true,
   "dependencies": {
     "@glidejs/glide": "^3.4.1",

@@ -48,7 +48,7 @@ const ListPageHeading = ({
     <Row>
       <Colxx xxs="12">
         <div className="mb-2">
-          {isAdmin && <h1 style={{ color: 'black' }}>Model Pembelajaran</h1>}
+          {isAdmin && <h1 style={{ color: 'black' }}>Master Phone</h1>}
           {isAdmin && (
             <div className="text-zero top-right-button-container">
               <Button

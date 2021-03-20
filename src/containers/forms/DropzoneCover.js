@@ -12,7 +12,7 @@ const dropzoneComponentConfig = {
 
 const dropzoneConfig = {
   thumbnailHeight: 160,
-  maxFiles: 1,
+  maxFiles: 10,
   iconFiletypes: ['.jpg', '.png', '.gif'],
   acceptedFiles: 'image/jpeg,image/png,image/gif',
   previewTemplate: ReactDOMServer.renderToStaticMarkup(
@@ -64,14 +64,14 @@ export default class DropzoneCover extends Component {
   }
 
   render() {
-    const { onUpload } = this.props;
+    const { onUpload, removed } = this.props;
 
     const eventHandlers = {
       init: (dz) => (this.dropzone = dz),
       drop: this.callbackArray,
       addedfile: this.callback,
       success: onUpload,
-      removedfile: this.removedfile,
+      removedfile: removed,
     };
     return (
       <DropzoneComponent

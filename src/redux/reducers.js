@@ -3,7 +3,7 @@ import settings from './settings/reducer';
 import menu from './menu/reducer';
 import authUser from './auth/reducer';
 import todoApp from './todo/reducer';
-import modelApp from './model/reducer';
+import phoneApp from './phone/reducer';
 import surveyListApp from './surveyList/reducer';
 import surveyDetailApp from './surveyDetail/reducer';
 
@@ -14,7 +14,7 @@ const reducers = combineReducers({
   todoApp,
   surveyListApp,
   surveyDetailApp,
-  modelApp,
+  phoneApp,
 });
 
 export default reducers;

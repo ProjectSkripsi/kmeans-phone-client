@@ -16,13 +16,13 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
+import { get } from 'lodash';
 import GlideComponentThumbs from '../../components/carousel/GlideComponentThumbs';
 import { Colxx } from '../../components/common/CustomBootstrap';
 
 const ModalDetail = ({ isOpen, setIsOpen, data, onDownload }) => {
   const [activeTab, setActiveTab] = useState('details');
 
-  // const onDownload = async () => {};
   const { images } = data;
   const output =
     images && images.map((elm) => ({ id: elm._id, img: elm.imageUrl }));
@@ -35,38 +35,38 @@ const ModalDetail = ({ isOpen, setIsOpen, data, onDownload }) => {
       <ModalBody>
         <Row>
           <Colxx xxs="12" xl="12" className="col-left">
-            <Card className="mb-4">
-              <CardBody>
-                <GlideComponentThumbs
-                  settingsImages={{
-                    bound: true,
-                    rewind: false,
-                    focusAt: 0,
-                    startAt: 0,
-                    gap: 5,
-                    perView: 1,
-                    data: output || [],
-                  }}
-                  settingsThumbs={{
-                    bound: true,
-                    rewind: false,
-                    focusAt: 0,
-                    startAt: 0,
-                    gap: 10,
-                    perView: 5,
-                    data: [],
-                    breakpoints: {
-                      576: {
-                        perView: 4,
-                      },
-                      420: {
-                        perView: 3,
-                      },
-                    },
-                  }}
-                />
-              </CardBody>
-            </Card>
+            {/* <Card className="mb-4">
+              <CardBody> */}
+            <GlideComponentThumbs
+              settingsImages={{
+                bound: true,
+                rewind: false,
+                focusAt: 0,
+                startAt: 0,
+                gap: 5,
+                perView: 1,
+                data: output || [],
+              }}
+              settingsThumbs={{
+                bound: true,
+                rewind: false,
+                focusAt: 0,
+                startAt: 0,
+                gap: 10,
+                perView: 5,
+                data: output || [],
+                breakpoints: {
+                  576: {
+                    perView: 4,
+                  },
+                  420: {
+                    perView: 3,
+                  },
+                },
+              }}
+            />
+            {/* </CardBody>
+            </Card> */}
             <Card className="mb-4">
               <CardHeader>
                 <Nav tabs className="card-header-tabs ">
@@ -80,20 +80,7 @@ const ModalDetail = ({ isOpen, setIsOpen, data, onDownload }) => {
                       to="#"
                       location={{}}
                     >
-                      Deskripsi Model
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        active: activeTab === 'info',
-                        'nav-link': true,
-                      })}
-                      onClick={() => setActiveTab('info')}
-                      to="#"
-                      location={{}}
-                    >
-                      Info Model
+                      Spesifikasi
                     </NavLink>
                   </NavItem>
                 </Nav>
@@ -104,100 +91,78 @@ const ModalDetail = ({ isOpen, setIsOpen, data, onDownload }) => {
                   <Row>
                     <Colxx sm="12">
                       <CardBody>
-                        <h3 className="mb-5">{data.title}</h3>
-                        <p style={{ textAlign: 'justify' }}>
-                          {data.description}
-                        </p>
-                        <br />
-                      </CardBody>
-                    </Colxx>
-                  </Row>
-                </TabPane>
-                <TabPane tabId="info">
-                  <Row>
-                    <Colxx sm="12">
-                      <CardBody>
                         <div className="d-flex flex-row align-items-center">
-                          <h5>Tahun:</h5>
-                          <div className="pl-3 pt-2 pr-2 pb-2">
-                            <h5>
-                              <p className="list-item-heading mb-1">
-                                {data.year}
-                              </p>
-                            </h5>
-                          </div>
+                          <h5>
+                            <b>
+                              {data.brand} - {data.type} | {data.year}
+                            </b>
+                          </h5>
                         </div>
-                        <div className="d-flex flex-row align-items-center">
-                          <h5>Pengarang:</h5>
-                          <div className="pl-3 pt-2 pr-2 pb-2">
-                            <h5>
-                              <p className="list-item-heading mb-1">
-                                {data.author || '-'}
-                              </p>
-                            </h5>
-                          </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Brand : {data.brand}
+                          </p>
                         </div>
-                        <div className="d-flex flex-row align-items-center ">
-                          <h5>Kesetaraan Modul:</h5>
-                          <div className="pl-3 pt-2 pr-2 pb-2">
-                            <h5>
-                              <p className="list-item-heading mb-1">
-                                {data.equivalenceModule}
-                              </p>
-                            </h5>
-                          </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>OS : {data.os}</p>
                         </div>
-                        <div className="d-flex flex-row align-items-center ">
-                          <h5>Keahlian Guru:</h5>
-                          <div className="pl-3 pt-2 pr-2 pb-2">
-                            <h5>
-                              <p className="list-item-heading mb-1">
-                                {data.teacherExpertise}
-                              </p>
-                            </h5>
-                          </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            CPU : {data.cpu}
+                          </p>
                         </div>
-                        <div className="d-flex flex-row align-items-center ">
-                          <h5>Kandungan Budaya Lokal:</h5>
-                          <div className="pl-3 pt-2 pr-2 pb-2">
-                            <h5>
-                              <p className="list-item-heading mb-1">
-                                {data.score}
-                              </p>
-                            </h5>
-                          </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Chipset : {data.chipset}
+                          </p>
                         </div>
-                        <div className="d-flex flex-row align-items-center ">
-                          <h5>Kandungan Konten Nasionalisme:</h5>
-                          <div className="pl-3 pt-2 pr-2 pb-2">
-                            <h5>
-                              <p className="list-item-heading mb-1">
-                                {data.nasionalismContent}
-                              </p>
-                            </h5>
-                          </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Kamera Depan : {get(data, 'camera.front', '')} MP
+                          </p>
                         </div>
-                        <div className="d-flex flex-row align-items-center ">
-                          <h5>Konsep Pembelajaran:</h5>
-                          <div className="pl-3 pt-2 pr-2 pb-2">
-                            <h5>
-                              <p className="list-item-heading mb-1">
-                                {data.learningConcept}
-                              </p>
-                            </h5>
-                          </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Kamera Belakang : : {get(data, 'camera.rear', '')}{' '}
+                            MP
+                          </p>
                         </div>
-
-                        <Button
-                          color="secondary"
-                          block
-                          outline
-                          onClick={() => onDownload(data)}
-                          className="mt-3"
-                        >
-                          <a className="simple-icon-cloud-download" /> DOWNLOAD
-                          ({data.download || 0})
-                        </Button>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Ukuran Layar : {data.dispalySize} inches
+                          </p>
+                        </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Resolusi Layar : {data.dispalyResolution} pixels
+                          </p>
+                        </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Memory : {data.memory}
+                          </p>
+                        </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Battery : {data.battery} mAh
+                          </p>
+                        </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Finger Print :{' '}
+                            {data.fingerPrint ? 'Tersedia' : 'Tidak Tersedia'}
+                          </p>
+                        </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            NFC : {data.nfc ? 'Tersedia' : 'Tidak Tersedia'}
+                          </p>
+                        </div>
+                        <div>
+                          <p style={{ marginBottom: '10px' }}>
+                            Harga : Rp. {data.price}
+                          </p>
+                        </div>
                       </CardBody>
                     </Colxx>
                   </Row>

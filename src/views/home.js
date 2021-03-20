@@ -1,21 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import {
-  DropdownToggle,
-  DropdownItem,
-  DropdownMenu,
-  UncontrolledDropdown,
-} from 'reactstrap';
 import classnames from 'classnames';
 import { scroller } from 'react-scroll';
 import { saveAs } from 'file-saver';
 import Headroom from 'react-headroom';
 import axios from 'axios';
 import { baseUrl } from '../constants/defaultValues';
-import {
-  getCurriculumService,
-  onDownloadService,
-} from '../redux/model/services';
+import { onDownloadService } from '../redux/phone/services';
 import ListPageHeading from '../containers/pages/ListPageHeading';
 import ModalDetail from './model/detail';
 import ListPageListing from '../components/Model/ListPageListing';
@@ -50,7 +41,7 @@ const Home = ({ match }) => {
     column: 'title',
     label: 'Product Name',
   });
-  const [data, setData] = useState({});
+
   const [modalOpen, setModalOpen] = useState(false);
   const [totalItemCount, setTotalItemCount] = useState(0);
   const [totalPage, setTotalPage] = useState(1);
@@ -107,10 +98,6 @@ const Home = ({ match }) => {
       offset: -100,
     });
     return false;
-  };
-
-  const onDownload = () => {
-    saveAs(data.fileUrl, `${data.title}.pdf`);
   };
 
   useEffect(() => {
@@ -240,7 +227,7 @@ const Home = ({ match }) => {
       <div className="mobile-menu" onClick={(event) => event.stopPropagation()}>
         <img
           style={{ cursor: 'pointer' }}
-          src="/assets/logos/white-full.png"
+          src="/assets/logos/myphone.png"
           height="10%"
           alt="Logo"
           href="/"
@@ -252,7 +239,7 @@ const Home = ({ match }) => {
             <NavLink to="/">HOME</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/">REKOMENDASI</NavLink>
+            <NavLink to="/recomendation">REKOMENDASI</NavLink>
           </li>
 
           <li className="nav-item">
@@ -268,7 +255,7 @@ const Home = ({ match }) => {
               <>
                 <img
                   style={{ cursor: 'pointer' }}
-                  src="/assets/logos/white-full.png"
+                  src="/assets/logos/myphone.png"
                   height="50%"
                   alt="Logo"
                   href="/"
@@ -281,7 +268,7 @@ const Home = ({ match }) => {
                   <NavLink to="/">HOME</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/login">REKOMENDASI</NavLink>
+                  <NavLink to="/recomendation">REKOMENDASI</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink to="/login">LOGIN</NavLink>
@@ -380,7 +367,7 @@ const Home = ({ match }) => {
                   <img
                     className="footer-logo"
                     alt="footer logo"
-                    src="/assets/logos/white-full.png"
+                    src="/assets/logos/myphone.png"
                   />
                 </a>
               </div>

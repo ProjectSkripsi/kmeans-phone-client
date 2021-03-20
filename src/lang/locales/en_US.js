@@ -67,7 +67,7 @@ module.exports = {
   'menu.analytics': 'Analytics',
   'menu.ecommerce': 'Ecommerce',
   'menu.content': 'Content',
-  'menu.pages': 'Master Model',
+  'menu.pages': 'Master Phone',
   'menu.data-list': 'Data List',
   'menu.thumb-list': 'Thumb List',
   'menu.image-list': 'Image List',
@@ -152,6 +152,7 @@ module.exports = {
   'menu.master-user': 'Pengaturan Akun',
   'menu.model': 'Model',
   'menu.account-setting': 'Pengaturan Akun',
+  'menu.phones': 'Handphone',
 
   /* 04.Dashboards */
   'dashboards.pending-orders': 'Pending Orders',

@@ -23,8 +23,8 @@ const MasterUser = React.lazy(() =>
   import(/* webpackChunkName: "applications" */ './account/user')
 );
 
-const MasterPaud = React.lazy(() =>
-  import(/* webpackChunkName: "applications" */ './paud')
+const MasterPhone = React.lazy(() =>
+  import(/* webpackChunkName: "applications" */ './phones')
 );
 
 const App = ({ match }) => {
@@ -56,6 +56,10 @@ const App = ({ match }) => {
               render={(props) => <Pages {...props} />}
             />
             <Route
+              path={`${match.url}/phones`}
+              render={(props) => <MasterPhone {...props} />}
+            />
+            <Route
               path={`${match.url}/ui`}
               render={(props) => <Ui {...props} />}
             />
@@ -71,10 +75,7 @@ const App = ({ match }) => {
               path={`${match.url}/account-setting`}
               render={(props) => <MasterUser {...props} />}
             />
-            <Route
-              path={`${match.url}/master-paud`}
-              render={(props) => <MasterPaud {...props} />}
-            />
+
             <Redirect to="/error" />
           </Switch>
         </Suspense>

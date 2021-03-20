@@ -15,7 +15,7 @@ import { baseUrl } from '../../constants/defaultValues';
 import {
   getCurriculumService,
   onDownloadService,
-} from '../../redux/model/services';
+} from '../../redux/phone/services';
 import ListPageHeading from '../../containers/pages/ListPageHeading';
 import ModalDetail from './detail';
 import ListPageListing from '../../components/Model/ListPageListing';

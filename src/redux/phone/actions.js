@@ -1,10 +1,10 @@
 import {
-  SUBMIT_NEW_MODEL_REQUEST,
-  SUBMIT_NEW_MODEL_SUCCESS,
-  SUBMIT_NEW_MODEL_ERROR,
-  DELETE_MODEL_REQUEST,
-  DELETE_MODEL_SUCCESS,
-  DELETE_MODEL_ERROR,
+  SUBMIT_NEW_PHONE_REQUEST,
+  SUBMIT_NEW_PHONE_SUCCESS,
+  SUBMIT_NEW_PHONE_ERROR,
+  DELETE_PHONE_REQUEST,
+  DELETE_PHONE_SUCCESS,
+  DELETE_PHONE_ERROR,
   PUBLISH_MODEL_REQUEST,
   PUBLISH_MODEL_SUCCESS,
   PUBLISH_MODEL_ERROR,
@@ -14,38 +14,38 @@ import {
   GET_MODEL_BY_ID_REQUEST,
   GET_MODEL_BY_ID_SUCCESS,
   GET_MODEL_BY_ID_ERROR,
-  UPDATE_MODEL_REQUEST,
-  UPDATE_MODEL_SUCCESS,
-  UPDATE_MODEL_ERROR,
+  UPDATE_PHONE_REQUEST,
+  UPDATE_PHONE_SUCCESS,
+  UPDATE_PHONE_ERROR,
 } from '../actions';
 
-export const sumbitModel = (data, callBack) => ({
-  type: SUBMIT_NEW_MODEL_REQUEST,
+export const sumbitPhone = (data, callBack) => ({
+  type: SUBMIT_NEW_PHONE_REQUEST,
   payload: { data, callBack },
 });
 
-export const sumbitModelSuccess = (response) => ({
-  type: SUBMIT_NEW_MODEL_SUCCESS,
+export const sumbitPhoneSuccess = (response) => ({
+  type: SUBMIT_NEW_PHONE_SUCCESS,
   payload: response,
 });
 
-export const sumbitModelError = (error) => ({
-  type: SUBMIT_NEW_MODEL_ERROR,
+export const sumbitPhoneError = (error) => ({
+  type: SUBMIT_NEW_PHONE_ERROR,
   payload: { error },
 });
 
-export const deleteModel = (ids, callBack) => ({
-  type: DELETE_MODEL_REQUEST,
+export const deletePhone = (ids, callBack) => ({
+  type: DELETE_PHONE_REQUEST,
   payload: { ids, callBack },
 });
 
-export const deleteModelSuccess = (response) => ({
-  type: DELETE_MODEL_SUCCESS,
+export const deletePhoneSuccess = (response) => ({
+  type: DELETE_PHONE_SUCCESS,
   payload: response,
 });
 
-export const deleteModelError = (error) => ({
-  type: DELETE_MODEL_ERROR,
+export const deletePhoneError = (error) => ({
+  type: DELETE_PHONE_ERROR,
   payload: { error },
 });
 
@@ -94,17 +94,17 @@ export const getModelByIdError = (error) => ({
   payload: { error },
 });
 
-export const updateModel = (data, id, callBack) => ({
-  type: UPDATE_MODEL_REQUEST,
+export const updatePhone = (data, id, callBack) => ({
+  type: UPDATE_PHONE_REQUEST,
   payload: { data, id, callBack },
 });
 
-export const updateModelSuccess = (response) => ({
-  type: UPDATE_MODEL_SUCCESS,
+export const updatePhoneSuccess = (response) => ({
+  type: UPDATE_PHONE_SUCCESS,
   payload: response,
 });
 
-export const updateModelError = (error) => ({
-  type: UPDATE_MODEL_ERROR,
+export const updatePhoneError = (error) => ({
+  type: UPDATE_PHONE_ERROR,
   payload: { error },
 });

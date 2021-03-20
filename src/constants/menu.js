@@ -37,9 +37,9 @@ const data = [
   },
   {
     id: 'pages',
-    icon: 'iconsminds-digital-drawing',
+    icon: 'iconsminds-smartphone-3',
     label: 'menu.pages',
-    to: `${adminRoot}/pages/model/data-list`,
+    to: `${adminRoot}/phones`,
     // subs: [
     // {
     //   id: 'pages-authorization',
@@ -384,12 +384,12 @@ const data = [
   //   label: 'menu.master-paud',
   //   to: `${adminRoot}/master-paud`,
   // },
-  {
-    id: 'blankpage',
-    icon: 'simple-icon-book-open',
-    label: 'menu.blank-page',
-    to: `${adminRoot}/blank-page`,
-  },
+  // {
+  //   id: 'blankpage',
+  //   icon: 'simple-icon-book-open',
+  //   label: 'menu.blank-page',
+  //   to: `${adminRoot}/blank-page`,
+  // },
   {
     id: 'user',
     icon: 'simple-icon-user',

@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import React, { useState } from 'react';
 import {
   Row,
@@ -13,13 +14,13 @@ import {
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
-import { Colxx } from '../../components/common/CustomBootstrap';
+import { Colxx } from '../common/CustomBootstrap';
 // import TooltipItem from '../../components/common/TooltipItem';
 
 const ImageListView = ({
   product,
   isSelect,
-  collect,
+
   onCheckItem,
   isAdmin,
   toDetailModel,
@@ -83,8 +84,9 @@ const ImageListView = ({
                   target={'Tooltip-' + product._id}
                   toggle={toggle}
                 >
-                  {product.title}
+                  {product.brand} - {product.type}
                 </Tooltip>
+                <p className="list-item-heading">Rp. {product.price}</p>
               </CardSubtitle>
               <CardText className="text-muted text-small mb-0 font-weight-light">
                 {product.year}
@@ -110,15 +112,6 @@ const ImageListView = ({
             >
               LIHAT DETAIL
             </Button>
-            {/* {!isAdmin && (
-              <Button
-                color="primary"
-                block
-                onClick={() => onDownloadModel(product)}
-              >
-                DOWNLOAD
-              </Button>
-            )} */}
           </Row>
         </CardBody>
       </Card>

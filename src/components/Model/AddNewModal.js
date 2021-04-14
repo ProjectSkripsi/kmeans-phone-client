@@ -120,7 +120,20 @@ const AddNewModal = ({
               value={data.memory}
               name="memory"
               onChange={onChange}
-              placeholder="128GB 8GB RAM"
+              placeholder="128"
+              type="number"
+            />
+            <AvFeedback>Wajib di isi!</AvFeedback>
+          </AvGroup>
+          <AvGroup>
+            <Label>RAM</Label>
+            <AvInput
+              required
+              value={data.ram}
+              name="ram"
+              onChange={onChange}
+              placeholder="8"
+              type="number"
             />
             <AvFeedback>Wajib di isi!</AvFeedback>
           </AvGroup>

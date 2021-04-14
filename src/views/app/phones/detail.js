@@ -161,7 +161,12 @@ const DetailsPages = ({ match, intl, history, getModelByIdAction }) => {
                           </div>
                           <div>
                             <p style={{ marginBottom: '10px' }}>
-                              Memory : {data.memory}
+                              Memory : {data.memory || '-'} GB
+                            </p>
+                          </div>
+                          <div>
+                            <p style={{ marginBottom: '10px' }}>
+                              RAM : {data.ram || '-'} GB
                             </p>
                           </div>
                           <div>

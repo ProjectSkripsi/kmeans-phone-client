@@ -55,7 +55,7 @@ const memoryOptions = [
   { column: '1000', min: '513', max: '1024', label: '> 512 GB' },
 ];
 
-const pageSizes = [8, 12];
+const pageSizes = [12, 20];
 
 const Home = ({ match }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -158,7 +158,7 @@ const Home = ({ match }) => {
         .then((data) => {
           setTotalPage(data.totalPage);
           setItems(data.data);
-          
+         
           setSelectedItems([]);
           setTotalItemCount(data.totalItem);
           setIsLoaded(true);

@@ -193,6 +193,7 @@ const ListPageHeading = ({
                 />
               </div>
             </div>
+            {!isOrder &&
             <div className="float-md-right pt-1">
               <span className="text-muted text-small mr-1">{`${startIndex}-${endIndex} of ${totalItemCount} `}</span>
               <UncontrolledDropdown className="d-inline-block">
@@ -212,7 +213,7 @@ const ListPageHeading = ({
                   })}
                 </DropdownMenu>
               </UncontrolledDropdown>
-            </div>
+            </div>}
           </Collapse>
         </div>
         <Separator className="mb-5" />

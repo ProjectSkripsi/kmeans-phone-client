@@ -59,7 +59,7 @@ const ListPageHeading = ({
               >
                 <IntlMessages id="pages.add-new" />
               </Button>
-              {'  '}
+              
               <ButtonDropdown
                 isOpen={dropdownSplitOpen}
                 toggle={() => setDropdownSplitOpen(!dropdownSplitOpen)}
@@ -117,13 +117,13 @@ const ListPageHeading = ({
           >
             <div className="d-block d-md-inline-block pt-1">
               {isOrder && (
-                <UncontrolledDropdown className="mr-1 float-md-left btn-group mb-1">
+								<>
+                	<UncontrolledDropdown className="mr-1 float-md-left btn-group mb-1">
                   <DropdownToggle caret color="outline-dark" size="xs">
-                    <IntlMessages id="pages.orderby" />
-                    {selectedOrderOption.label}
+                    Harga
                   </DropdownToggle>
                   <DropdownMenu>
-                    {orderOptions.map((order, index) => {
+                    {/* {orderOptions.map((order, index) => {
                       return (
                         <DropdownItem
                           key={index}
@@ -132,9 +132,71 @@ const ListPageHeading = ({
                           {order.label}
                         </DropdownItem>
                       );
-                    })}
+                    })} */}
+                   	<DropdownItem>
+                      {`Semua`}
+                    </DropdownItem>
+                    <DropdownItem>
+                      {`< 2.000.000`}
+                    </DropdownItem>
+                     <DropdownItem>
+                      {`2.000.000 - 3.000.000`}
+                    </DropdownItem>
+										 <DropdownItem>
+                      {`5.000.000 - 10.000.000`}
+                    </DropdownItem>
+										 <DropdownItem>
+                      {`> 10.000.000`}
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
+								<UncontrolledDropdown className="mr-1 float-md-left btn-group mb-1">	
+                  <DropdownToggle caret color="outline-dark" size="xs">
+                    RAM
+                  </DropdownToggle>
+                  <DropdownMenu>
+                   
+                    <DropdownItem>
+                      {`Semua`}
+                    </DropdownItem>
+                     <DropdownItem>
+                      {`2`}
+                    </DropdownItem>
+										 <DropdownItem>
+                      {`4`}
+                    </DropdownItem>
+										<DropdownItem>
+                      {`6`}
+                    </DropdownItem>
+										 <DropdownItem>
+                      {`8`}
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+								<UncontrolledDropdown className="mr-1 float-md-left btn-group mb-1">	
+                  <DropdownToggle caret color="outline-dark" size="xs">
+                    Kapasitas
+                  </DropdownToggle>
+                  <DropdownMenu>
+                   
+                    <DropdownItem>
+                      {`Semua`}
+                    </DropdownItem>
+                     <DropdownItem>
+                      {`16`}
+                    </DropdownItem>
+										 <DropdownItem>
+                      {`32`}
+                    </DropdownItem>
+										<DropdownItem>
+                      {`128`}
+                    </DropdownItem>
+										 <DropdownItem>
+                      {`256`}
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+								</>
               )}
               <div className="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
                 <input

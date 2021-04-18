@@ -14,9 +14,7 @@ const ThumbListView = ({
   toDetailModel,
   onDownloadModel,
 }) => {
-  // const [tooltipOpen, setTooltipOpen] = useState(false);
-
-  // const toggle = () => setTooltipOpen(!tooltipOpen);
+  
   return (
     <Colxx xxs="12" key={product._id} className="mb-3">
       <Card
@@ -45,7 +43,7 @@ const ThumbListView = ({
               {product.year}
             </p>
             <p className="mb-1 text-muted text-small w-15  w-sm-100">
-              {/* Topsis: {product.topsis.topsis} */} topsis 
+              {/* Topsis: {product.topsis.topsis} */} topsis: 0.4
             </p>
             <p className="mb-1 text-muted text-small w-15  w-sm-100">
               {/* Topsis: {product.topsis.topsis} */} cluster 

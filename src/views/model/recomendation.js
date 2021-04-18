@@ -324,6 +324,7 @@ const Home = ({ match }) => {
                         orderOptions={orderOptions}
                         pageSizes={pageSizes}
                         toggleModal={() => setModalOpen(!modalOpen)}
+                        isOrder
                       />
 
                       <ListPageListing

@@ -27,7 +27,7 @@ const ThumbListView = ({
         <div to={`?p=${product._id}`} className="d-flex">
           <img
             alt={product.title}
-            src={product.coverUrl}
+            src={product.images[0].imageUrl}
             className="list-thumbnail responsive border-0 card-img-left"
           />
         </div>
@@ -38,14 +38,17 @@ const ThumbListView = ({
                 className="list-item-heading mb-1 truncate"
                 // id={'Tooltip-' + product._id}
               >
-                {product.title}
+                {product.brand} {product.type}
               </p>
             </div>
-            <p className="mb-1 text-muted text-small w-5 w-sm-100">
+            <p className="mb-1 text-muted text-small w-25 w-sm-100">
               {product.year}
             </p>
             <p className="mb-1 text-muted text-small w-15  w-sm-100">
-              Topsis: {product.topsis.topsis}
+              {/* Topsis: {product.topsis.topsis} */} topsis 
+            </p>
+            <p className="mb-1 text-muted text-small w-15  w-sm-100">
+              {/* Topsis: {product.topsis.topsis} */} cluster 
             </p>
           </div>
           <div className="w-10 w-sm-100">
@@ -59,16 +62,7 @@ const ThumbListView = ({
               DETAIL
             </Button>
           </div>
-          <div className="w-10 w-sm-100">
-            <Button
-              color="secondary"
-              size="sm"
-              className="mt-4"
-              onClick={() => onDownloadModel(product)}
-            >
-              UNDUH
-            </Button>
-          </div>
+         
         </div>
       </Card>
       {/* </ContextMenuTrigger> */}

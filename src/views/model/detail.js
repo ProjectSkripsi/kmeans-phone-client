@@ -138,10 +138,15 @@ const ModalDetail = ({ isOpen, setIsOpen, data, onDownload }) => {
                           </p>
                         </div>
                         <div>
-                          <p style={{ marginBottom: '10px' }}>
-                            Memory : {data.memory}
-                          </p>
-                        </div>
+                            <p style={{ marginBottom: '10px' }}>
+                              Memory : {data.memory || '-'} GB
+                            </p>
+                          </div>
+                          <div>
+                            <p style={{ marginBottom: '10px' }}>
+                              RAM : {data.ram || '-'} GB
+                            </p>
+                          </div>
                         <div>
                           <p style={{ marginBottom: '10px' }}>
                             Battery : {data.battery} mAh

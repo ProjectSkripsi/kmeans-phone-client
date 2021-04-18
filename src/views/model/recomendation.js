@@ -34,7 +34,7 @@ const Home = ({ match }) => {
   const refSectionHome = useRef(null);
   const refSectionFooter = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [displayMode, setDisplayMode] = useState('imagelist');
+  const [displayMode, setDisplayMode] = useState('thumblist');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPageSize, setSelectedPageSize] = useState(12);
   const [selectedOrderOption, setSelectedOrderOption] = useState({
@@ -289,7 +289,7 @@ const Home = ({ match }) => {
         <div className="content-container">
           <div className="section home" ref={refSectionHome}>
             <div className="container">
-              <div className="row home-row" ref={refRowHome}>
+              <div className="home-row" ref={refRowHome}>
                 {!isLoaded ? (
                   <div className="loading" />
                 ) : (

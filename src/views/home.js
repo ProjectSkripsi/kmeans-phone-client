@@ -289,7 +289,7 @@ const Home = ({ match }) => {
         <div className="content-container">
           <div className="section home" ref={refSectionHome}>
             <div className="container">
-              <div className="row home-row" ref={refRowHome}>
+              <div className=" home-row" ref={refRowHome}>
                 {!isLoaded ? (
                   <div className="loading" />
                 ) : (

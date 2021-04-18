@@ -39,6 +39,15 @@ const ListPageHeading = ({
   isOrder,
   isAdmin,
   onDelete,
+  priceOptions,
+  filterPrice,
+  ramOptions,
+  filterRam,
+  memoryOptions,
+  filterMemory,
+  selectedMemory,
+  selectedPrice,
+  selectedRam
 }) => {
   const [dropdownSplitOpen, setDropdownSplitOpen] = useState(false);
   const [displayOptionsIsOpen, setDisplayOptionsIsOpen] = useState(false);
@@ -120,80 +129,56 @@ const ListPageHeading = ({
 								<>
                 	<UncontrolledDropdown className="mr-1 float-md-left btn-group mb-1">
                   <DropdownToggle caret color="outline-dark" size="xs">
-                    Harga
+                    Harga : {selectedPrice.label} 
                   </DropdownToggle>
                   <DropdownMenu>
-                    {/* {orderOptions.map((order, index) => {
+                    {priceOptions.map((order, index) => {
                       return (
                         <DropdownItem
                           key={index}
-                          onClick={() => changeOrderBy(order.column)}
+                          onClick={() => filterPrice(order.column)}
                         >
                           {order.label}
                         </DropdownItem>
                       );
-                    })} */}
-                   	<DropdownItem>
-                      {`Semua`}
-                    </DropdownItem>
-                    <DropdownItem>
-                      {`< 2.000.000`}
-                    </DropdownItem>
-                     <DropdownItem>
-                      {`2.000.000 - 3.000.000`}
-                    </DropdownItem>
-										 <DropdownItem>
-                      {`5.000.000 - 10.000.000`}
-                    </DropdownItem>
-										 <DropdownItem>
-                      {`> 10.000.000`}
-                    </DropdownItem>
+                    })}
+                 
                   </DropdownMenu>
                 </UncontrolledDropdown>
 								<UncontrolledDropdown className="mr-1 float-md-left btn-group mb-1">	
                   <DropdownToggle caret color="outline-dark" size="xs">
-                    RAM
+                    RAM : {selectedRam.label} 
                   </DropdownToggle>
                   <DropdownMenu>
-                   
-                    <DropdownItem>
-                      {`Semua`}
-                    </DropdownItem>
-                     <DropdownItem>
-                      {`2`}
-                    </DropdownItem>
-										 <DropdownItem>
-                      {`4`}
-                    </DropdownItem>
-										<DropdownItem>
-                      {`6`}
-                    </DropdownItem>
-										 <DropdownItem>
-                      {`8`}
-                    </DropdownItem>
+                    {ramOptions.map((order, index) => {
+                      return (
+                        <DropdownItem
+                          key={index}
+                          onClick={() => filterRam(order.column)}
+                        >
+                          {order.label}
+                        </DropdownItem>
+                      );
+                    })}
+                 
                   </DropdownMenu>
                 </UncontrolledDropdown>
 								<UncontrolledDropdown className="mr-1 float-md-left btn-group mb-1">	
                   <DropdownToggle caret color="outline-dark" size="xs">
-                    Kapasitas
+                    Kapasitas : {selectedMemory.label} 
                   </DropdownToggle>
                   <DropdownMenu>
-                   
-                    <DropdownItem>
-                      {`Semua`}
-                    </DropdownItem>
-                     <DropdownItem>
-                      {`16`}
-                    </DropdownItem>
-										 <DropdownItem>
-                      {`32`}
-                    </DropdownItem>
-										<DropdownItem>
-                      {`128`}
-                    </DropdownItem>
-										 <DropdownItem>
-                      {`256`}
-                    </DropdownItem>
+                    {memoryOptions.map((order, index) => {
+                      return (
+                        <DropdownItem
+                          key={index}
+                          onClick={() => filterMemory(order.column)}
+                        >
+                          {order.label}
+                        </DropdownItem>
+                      );
+                    })}
+                 
                   </DropdownMenu>
                 </UncontrolledDropdown>
 								</>

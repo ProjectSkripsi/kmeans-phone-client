@@ -61,7 +61,7 @@ const AddNewModal = ({
               value={data.brand}
               name="brand"
               onChange={onChange}
-              placeholder="Samsung, Iphone, Xiaomi"
+              placeholder="Samsung, Apple, Xiaomi"
             />
             <AvFeedback>Wajib di isi!</AvFeedback>
           </AvGroup>

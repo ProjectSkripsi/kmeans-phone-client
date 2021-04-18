@@ -26,6 +26,35 @@ const orderOptions = [
   { column: 'category', label: 'Category' },
   { column: 'status', label: 'Status' },
 ];
+
+const priceOptions = [
+  { column: 'all', min: '0', max: '2000000000', label: 'Semua' },
+  { column: '2000000', min: '0', max: '2000000', label: '< 2.000.000' },
+  { column: '2000000 - 3000000', min: '2000001', max: '5000000', label: '2.000.000 - 5.000.000' },
+  { column: '5000000 - 10000000', min: '5000001', max: '10000000', label: '5.000.000 - 10.000.000' },
+  { column: '10000000', min: '10000001', max: '500000000', label: '> 10.000.000' },
+];
+
+const ramOptions = [
+  { column: 'all', min: '0', max: '64', label: 'Semua' },
+  { column: '2', min: '0', max: '2', label: '2 GB' },
+  { column: '4', min: '2', max: '4', label: '4 GB' },
+  { column: '6', min: '5', max: '6', label: '6 GB' },
+  { column: '8', min: '7', max: '8', label: '8 GB' },
+  { column: '> 8', min: '9', max: '32', label: '> 8 GB' },
+];
+
+const memoryOptions = [
+  { column: 'all', min: '0', max: '1000', label: 'Semua' },
+  { column: '16', min: '0', max: '16', label: '16 GB' },
+  { column: '32', min: '17', max: '32', label: '32 GB' },
+  { column: '64', min: '33', max: '64', label: '64 GB' },
+  { column: '128', min: '65', max: '128', label: '128 GB' },
+  { column: '256', min: '129', max: '256', label: '256 GB' },
+  { column: '512', min: '257', max: '512', label: '512 GB' },
+  { column: '1000', min: '513', max: '1024', label: '> 512 GB' },
+];
+
 const pageSizes = [8, 12];
 
 const Home = ({ match }) => {
@@ -51,6 +80,15 @@ const Home = ({ match }) => {
   const [lastChecked, setLastChecked] = useState(null);
   const [isOpenModel, setIsOpen] = useState(false);
   const [selectedDetail, setSelectedDetail] = useState({});
+  const [selectedPrice, setSelectedPrice] = useState({
+   column: 'all', min: '0', max: '2000000000', label: 'Semua'
+  });
+  const [selectedRam, setSelectedRam] = useState({
+   column: 'all', min: '0', max: '1000', label: 'Semua'
+  });
+  const [selectedMemory, setSelectedMemory] = useState({
+    column: 'all', min: '0', max: '1000', label: 'Semua'
+  });
 
   useEffect(() => {
     window.addEventListener('scroll', onWindowScroll);
@@ -106,9 +144,13 @@ const Home = ({ match }) => {
 
   useEffect(() => {
     async function fetchData() {
+      const isSearch = search && `&search=${search}`
+      const price = selectedPrice && `?min=${selectedPrice.min}&max=${selectedPrice.max}`
+      const ram = selectedRam && `&ramMin=${selectedRam.min}&ramMax=${selectedRam.max}`
+      const memory = selectedMemory && `&memMin=${selectedMemory.min}&memMax=${selectedMemory.max}`
       axios
         .get(
-          `${baseUrl}/phone/${selectedPageSize}/${currentPage}?search=${search}`
+          `${baseUrl}/phone/recomendation/${selectedPageSize}/${currentPage}${price}${ram}${memory}${isSearch}`
         )
         .then((res) => {
           return res.data;
@@ -116,13 +158,14 @@ const Home = ({ match }) => {
         .then((data) => {
           setTotalPage(data.totalPage);
           setItems(data.data);
+          
           setSelectedItems([]);
           setTotalItemCount(data.totalItem);
           setIsLoaded(true);
         });
     }
     fetchData();
-  }, [selectedPageSize, currentPage, selectedOrderOption, search]);
+  }, [selectedPageSize, currentPage, selectedPrice, search, selectedRam, selectedMemory]);
 
   const onCheckItem = (event, id) => {
     if (
@@ -325,6 +368,24 @@ const Home = ({ match }) => {
                         pageSizes={pageSizes}
                         toggleModal={() => setModalOpen(!modalOpen)}
                         isOrder
+                        priceOptions={priceOptions}
+                        filterPrice={(column) => {
+                          setSelectedPrice(
+                            priceOptions.find((x) => x.column === column)
+                          );
+                        }}
+                        selectedPrice={selectedPrice}
+                        ramOptions={ramOptions}
+                        filterRam={(column)=> {
+                          setSelectedRam(ramOptions.find((x) => x.column === column))
+                        }}
+                        selectedRam={selectedRam}
+                        memoryOptions={memoryOptions}
+                        filterMemory={(column)=> {
+                         
+                          setSelectedMemory(memoryOptions.find((x) => x.column === column))
+                        }}
+                        selectedMemory={selectedMemory}
                       />
 
                       <ListPageListing

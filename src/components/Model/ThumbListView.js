@@ -36,10 +36,13 @@ const ThumbListView = ({
                 className="list-item-heading mb-1 truncate"
                 // id={'Tooltip-' + product._id}
               >
-                {product.brand} {product.type}
+                {product.brand} - {product.type}
               </p>
             </div>
-            <p className="mb-1 text-muted text-small w-25 w-sm-100">
+            <p className="mb-1 text-muted text-small w-15 w-sm-100">
+              {product.os}
+            </p>
+            <p className="mb-1 text-muted text-small w-15 w-sm-100">
               {product.year}
             </p>
             <p className="mb-1 text-muted text-small w-15  w-sm-100">

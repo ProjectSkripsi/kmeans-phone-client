@@ -47,7 +47,10 @@ const ListPageHeading = ({
   filterMemory,
   selectedMemory,
   selectedPrice,
-  selectedRam
+  selectedRam,
+  seeAll,
+  isProcces,
+  seeProccess
 }) => {
   const [dropdownSplitOpen, setDropdownSplitOpen] = useState(false);
   const [displayOptionsIsOpen, setDisplayOptionsIsOpen] = useState(false);
@@ -193,6 +196,23 @@ const ListPageHeading = ({
                 />
               </div>
             </div>
+            <div className="float-md-right pt-1">
+              <Button color="light" size="sm" className="mb-2" onClick={seeAll}>
+                Lihat Semua
+              </Button>
+            </div>
+            {isProcces && (
+              <div className="float-md-right pt-1 mr-2">
+                <Button
+                  color="light"
+                  size="sm"
+                  className="mb-2"
+                  onClick={seeProccess}
+                >
+                  Lihat Proses
+                </Button>
+              </div>
+            )}
             {!isOrder &&
             <div className="float-md-right pt-1">
               <span className="text-muted text-small mr-1">{`${startIndex}-${endIndex} of ${totalItemCount} `}</span>

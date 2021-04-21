@@ -45,8 +45,8 @@ const ThumbListView = ({
             <p className="mb-1 text-muted text-small w-15 w-sm-100">
               {product.year}
             </p>
-            <p className="mb-1 text-muted text-small w-15  w-sm-100">
-              {/* Topsis: {product.topsis.topsis} */} topsis: 0.4
+            <p className="mb-1 text-muted text-small w-20  w-sm-100">
+              {/* Topsis: {product.topsis.topsis} */} topsis:  {product.topsis.topsis || '-'}
             </p>
             <p className="mb-1 text-muted text-small w-15  w-sm-100">
               {/* Topsis: {product.topsis.topsis} */} cluster:  {product.cluster || '-'}

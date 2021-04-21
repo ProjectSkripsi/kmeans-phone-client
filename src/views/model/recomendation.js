@@ -12,6 +12,11 @@ import ModalDetail from './detail';
 import ListPageListing from '../../components/Model/ListPageListing';
 import useMousetrap from '../../hooks/use-mousetrap';
 
+
+const ModalProccess = React.lazy(() =>
+  import(/* webpackChunkName: "views-error" */ './proccess')
+);
+
 const getIndex = (value, arr, prop) => {
   for (let i = 0; i < arr.length; i += 1) {
     if (arr[i][prop] === value) {
@@ -52,7 +57,7 @@ const memoryOptions = [
   { column: '128', min: '65', max: '128', label: '128 GB' },
   { column: '256', min: '129', max: '256', label: '256 GB' },
   { column: '512', min: '257', max: '512', label: '512 GB' },
-  { column: '1000', min: '513', max: '1024', label: '> 512 GB' },
+ 
 ];
 
 const pageSizes = [12, 20];
@@ -64,7 +69,7 @@ const Home = ({ match }) => {
   const refSectionFooter = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [displayMode, setDisplayMode] = useState('thumblist');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [selectedPageSize, setSelectedPageSize] = useState(12);
   const [selectedOrderOption, setSelectedOrderOption] = useState({
     column: 'title',
@@ -89,6 +94,8 @@ const Home = ({ match }) => {
   const [selectedMemory, setSelectedMemory] = useState({
     column: 'all', min: '0', max: '1000', label: 'Semua'
   });
+  const [isOpenProccess, setIsOpenProccess] = useState(false);
+  const [proccesData, setProccesData] = useState({});
 
   useEffect(() => {
     window.addEventListener('scroll', onWindowScroll);
@@ -139,7 +146,7 @@ const Home = ({ match }) => {
   };
 
   useEffect(() => {
-    setCurrentPage(1);
+    setCurrentPage(0);
   }, [selectedPageSize, selectedOrderOption]);
 
   useEffect(() => {
@@ -157,8 +164,11 @@ const Home = ({ match }) => {
         })
         .then((data) => {
           setTotalPage(data.totalPage);
-          setItems(data.data);
-         
+          setProccesData(data);
+          setItems(
+            data.data
+          )
+      
           setSelectedItems([]);
           setTotalItemCount(data.totalItem);
           setIsLoaded(true);
@@ -267,6 +277,18 @@ const Home = ({ match }) => {
         data={selectedDetail}
         onDownload={onDownloadModel}
       />
+      <ModalProccess
+        isOpen={isOpenProccess}
+        setIsOpen={() => {
+          setIsOpenProccess(false);
+        }}
+        valDivisor={proccesData.valueDivisor}
+        valTotalDivisor={proccesData.valTotalDivisor}
+        extractValue={proccesData.extractValue}
+        minMaxVal={proccesData.minMaxVal}
+        data={proccesData.data}
+        kmeansData={proccesData.kmeansData}
+      />
       <div className="mobile-menu" onClick={(event) => event.stopPropagation()}>
         <img
           style={{ cursor: 'pointer' }}
@@ -362,6 +384,12 @@ const Home = ({ match }) => {
                         onSearchKey={(e) => {
                           if (e.key === 'Enter') {
                             setSearch(e.target.value.toLowerCase());
+                            setCurrentPage(1);
+                            if (e.target.value !== '') {
+                              setSelectedPageSize(12);
+                            } else {
+                              setSelectedPageSize(12);
+                            }
                           }
                         }}
                         orderOptions={orderOptions}
@@ -370,6 +398,7 @@ const Home = ({ match }) => {
                         isOrder
                         priceOptions={priceOptions}
                         filterPrice={(column) => {
+                          setCurrentPage(1);
                           setSelectedPrice(
                             priceOptions.find((x) => x.column === column)
                           );
@@ -377,15 +406,21 @@ const Home = ({ match }) => {
                         selectedPrice={selectedPrice}
                         ramOptions={ramOptions}
                         filterRam={(column)=> {
+                          setCurrentPage(1);
                           setSelectedRam(ramOptions.find((x) => x.column === column))
                         }}
                         selectedRam={selectedRam}
                         memoryOptions={memoryOptions}
                         filterMemory={(column)=> {
-                         
+                          setCurrentPage(1);
                           setSelectedMemory(memoryOptions.find((x) => x.column === column))
                         }}
                         selectedMemory={selectedMemory}
+                        seeAll={()=> setCurrentPage(1)}
+                        isProcces={items.length !== 0}
+                        seeProccess={() => {
+                          setIsOpenProccess(true);
+                        }}
                       />
 
                       <ListPageListing

@@ -26,13 +26,59 @@ const ModalProccess = ({
   extractValue,
   minMaxVal,
   data,
+  kmeansData
 }) => {
+
   return (
     <Modal isOpen={isOpen} size="lg" toggle={setIsOpen}>
-      <ModalHeader>Topsis Proses</ModalHeader>
+      <ModalHeader>Algoritma Proses</ModalHeader>
       <ModalBody>
+        <h5>Kmeans</h5>
         <Row>
-          <Colxx xxs="6">
+          <Colxx xxs="12">
+              {kmeansData && kmeansData.map((item, index) => (
+                <Card className="mb-4" key={index}>
+                  <CardBody >
+                    <CardTitle>Cluster {index+1} </CardTitle>
+                    <div>
+                      CentroId : {item && item.centroid.map((cent)=> { return `${cent.toFixed(2)}, `})}
+                    </div>
+                    <hr/>
+                    <div>
+                      Cluster 
+                      <Table>
+                        <thead>
+                          <tr>
+                            <th>index data</th>
+                            <th>RAM</th>
+                            <th>Memory</th>
+                            <th>Camera</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {item &&
+                            item.cluster.map((clust, index) => {
+                              return (
+                                <tr key={index}>
+                                  <th scope="row">{item.clusterInd[index]}</th>
+                                  <td>{clust[0]}</td>
+                                  <td>{clust[1]}</td>
+                                  <td>{clust[2]}</td>
+                                </tr>
+                              );
+                            })}
+                        </tbody>
+                      </Table>
+                    </div>
+                  </CardBody>
+                </Card>
+              ))}
+          </Colxx>
+        </Row>
+        <hr/>
+        <h5>Topsis</h5>
+        <Row>
+          <Colxx xxs="12">
             <Card className="mb-4">
               <CardBody>
                 <CardTitle>Kriteria Penilaian</CardTitle>
@@ -47,27 +93,27 @@ const ModalProccess = ({
                   <tbody>
                     <tr>
                       <th scope="row">1</th>
-                      <td>KETERSEDIAAN MODUL/DIKTAT</td>
+                      <td>RAM</td>
                       <td>V1</td>
                     </tr>
                     <tr>
                       <th scope="row">2</th>
-                      <td>KEAHLIAN PENDIDIK</td>
+                      <td>Memory</td>
                       <td>V2</td>
                     </tr>
                     <tr>
                       <th scope="row">3</th>
-                      <td>KANDUNGAN KONTEN NASIOANLISME</td>
+                      <td>Kamera Utama</td>
                       <td>V3</td>
                     </tr>
                     <tr>
                       <th scope="row">4</th>
-                      <td>KONTEKSTUAL/ TEKSTUAL</td>
+                      <td>Kamera Depan</td>
                       <td>V4</td>
                     </tr>
                     <tr>
                       <th scope="row">5</th>
-                      <td>KANDUNGAN BUDAYA LOKAL</td>
+                      <td>Battery</td>
                       <td>V5</td>
                     </tr>
                   </tbody>
@@ -75,7 +121,7 @@ const ModalProccess = ({
               </CardBody>
             </Card>
           </Colxx>
-          <Colxx xxs="6">
+          <Colxx xxs="12">
             <Card className="mb-4">
               <CardBody>
                 <CardTitle>Kriteria Pembobotan</CardTitle>
@@ -90,17 +136,17 @@ const ModalProccess = ({
                   <tbody>
                     <tr>
                       <th scope="row">1</th>
-                      <td>Tidak Ada</td>
-                      <td>0</td>
+                      <td>{`<4GB, <64GB, <32MP, <8MP, <1000mAh`}</td>
+                      <td>20</td>
                     </tr>
                     <tr>
                       <th scope="row">2</th>
-                      <td>Kurang</td>
+                      <td>{`<=8, >=64GB, >=64MP, >=8MP, >=1000mAh`}</td>
                       <td>50</td>
                     </tr>
                     <tr>
                       <th scope="row">3</th>
-                      <td>Cukup</td>
+                      <td>{`>8GB, >=128GB, >=100MP, >=16MP, >=3000mAh`}</td>
                       <td>100</td>
                     </tr>
                   </tbody>
@@ -118,10 +164,10 @@ const ModalProccess = ({
                   <thead>
                     <tr>
                       <th rowSpan="2" style={{ textAlign: 'center' }}>
-                        No
+                        clusterInd
                       </th>
                       <th rowSpan="2" style={{ textAlign: 'center' }}>
-                        Model Pembelajaran
+                        Model Handphone
                       </th>
                       <th colSpan="5" style={{ textAlign: 'center' }}>
                         Alias
@@ -140,7 +186,7 @@ const ModalProccess = ({
                       valDivisor.map((item, index) => {
                         return (
                           <tr key={index}>
-                            <th scope="row">{index + 1}</th>
+                            <th scope="row">{index}</th>
                             <td>{item[5]}</td>
                             <td>{item[0]}</td>
                             <td>{item[1]}</td>
@@ -217,8 +263,8 @@ const ModalProccess = ({
                 <Table bordered>
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Model Pembelajaran</th>
+                      <th>clusterInd</th>
+                      <th>Model Handphone</th>
                       <th>V1</th>
                       <th>V2</th>
                       <th>V3</th>
@@ -230,7 +276,7 @@ const ModalProccess = ({
                     {extractValue &&
                       extractValue.map((item, index) => (
                         <tr key={index}>
-                          <th scope="row">{index + 1}</th>
+                          <th scope="row">{index}</th>
                           <td>{valDivisor[index][5]}</td>
                           <td>{item[0]}</td>
                           <td>{item[1]}</td>
@@ -362,7 +408,8 @@ const ModalProccess = ({
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Model Pembelajaran</th>
+                      <th>Model Handphone</th>
+                      <th>Cluster</th>
                       <th>D+</th>
                       <th>D-</th>
                       <th>Value</th>
@@ -373,7 +420,8 @@ const ModalProccess = ({
                       data.map((item, index) => (
                         <tr key={item._id}>
                           <th scope="row">{index + 1}</th>
-                          <td>{item.title}</td>
+                          <td>{item.brand} - {item.type}</td>
+                          <td>{item.cluster}</td>
                           <td>{item.topsis['D+']}</td>
                           <td>{item.topsis['D-']}</td>
                           <td>{item.topsis.topsis}</td>

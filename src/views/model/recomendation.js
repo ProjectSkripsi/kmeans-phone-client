@@ -421,6 +421,7 @@ const Home = ({ match }) => {
                         seeProccess={() => {
                           setIsOpenProccess(true);
                         }}
+                        isRecomd
                       />
 
                       <ListPageListing

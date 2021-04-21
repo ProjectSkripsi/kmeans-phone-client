@@ -50,7 +50,8 @@ const ListPageHeading = ({
   selectedRam,
   seeAll,
   isProcces,
-  seeProccess
+  seeProccess,
+  isRecomd
 }) => {
   const [dropdownSplitOpen, setDropdownSplitOpen] = useState(false);
   const [displayOptionsIsOpen, setDisplayOptionsIsOpen] = useState(false);
@@ -196,11 +197,12 @@ const ListPageHeading = ({
                 />
               </div>
             </div>
+            {isRecomd &&
             <div className="float-md-right pt-1">
               <Button color="light" size="sm" className="mb-2" onClick={seeAll}>
                 Lihat Semua
               </Button>
-            </div>
+            </div>}
             {isProcces && (
               <div className="float-md-right pt-1 mr-2">
                 <Button

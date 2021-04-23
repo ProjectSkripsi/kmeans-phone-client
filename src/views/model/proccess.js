@@ -14,6 +14,7 @@ import {
   CardHeader,
   Button,
   Table,
+  Alert,
 } from 'reactstrap';
 import { Colxx } from '../../components/common/CustomBootstrap';
 import { get } from 'lodash';
@@ -26,9 +27,8 @@ const ModalProccess = ({
   extractValue,
   minMaxVal,
   data,
-  kmeansData
+  kmeansData,
 }) => {
-
   return (
     <Modal isOpen={isOpen} size="lg" toggle={setIsOpen}>
       <ModalHeader>Algoritma Proses</ModalHeader>
@@ -36,16 +36,21 @@ const ModalProccess = ({
         <h5>Kmeans</h5>
         <Row>
           <Colxx xxs="12">
-              {kmeansData && kmeansData.map((item, index) => (
+            {kmeansData &&
+              kmeansData.map((item, index) => (
                 <Card className="mb-4" key={index}>
-                  <CardBody >
-                    <CardTitle>Cluster {index+1} </CardTitle>
+                  <CardBody>
+                    <CardTitle>Cluster {index + 1} </CardTitle>
                     <div>
-                      CentroId : {item && item.centroid.map((cent)=> { return `${cent.toFixed(2) || '-'}, `})}
+                      CentroId :{' '}
+                      {item &&
+                        item.centroid.map((cent) => {
+                          return `${cent.toFixed(2) || '-'}, `;
+                        })}
                     </div>
-                    <hr/>
+                    <hr />
                     <div>
-                      Cluster 
+                      Cluster
                       <Table>
                         <thead>
                           <tr>
@@ -75,7 +80,7 @@ const ModalProccess = ({
               ))}
           </Colxx>
         </Row>
-        <hr/>
+        <hr />
         <h5>Topsis</h5>
         <Row>
           <Colxx xxs="12">
@@ -255,6 +260,46 @@ const ModalProccess = ({
             </Card>
           </Colxx>
         </Row>
+        <Colxx xxs="12">
+          <Card className="mb-4">
+            <CardBody>
+              <CardTitle>Mencari Nilai Pembagi</CardTitle>
+
+              <div>
+                Nilai Pembagi NPM V1 = &radic; (V1 Handphone 0) <sup>2</sup> +
+                (V1 Handphone 1) <sup>2</sup> + (V1 Handphone 3) <sup>2</sup>+
+                etc
+              </div>
+              <div>
+                Nilai Pembagi NPM V2 = &radic; (V2 Handphone 0) <sup>2</sup> +
+                (V2 Handphone 1) <sup>2</sup> + (V2 Handphone 3) <sup>2</sup> +
+                etc
+              </div>
+              <div>
+                Nilai Pembagi NPM V3 = &radic; (V3 Handphone 0) <sup>2</sup> +
+                (V3 Handphone 1) <sup>2</sup> + (V3 Handphone 2) <sup>2</sup> +
+                etc
+              </div>
+              <div>
+                Nilai Pembagi NPM V4 = &radic; (V4 Handphone 0) <sup>2</sup> +
+                (V4 Handphone 1) <sup>2</sup> + (V4 Handphone 2) <sup>2</sup> +
+                etc
+              </div>
+              <div>
+                Nilai Pembagi NPM V5 = &radic; (V5 Handphone 0) <sup>2</sup> +
+                (V5 Handphone 1) <sup>2</sup> + (V5 Handphone 2) <sup>2</sup> +
+                etc
+              </div>
+              <hr />
+              <CardTitle>Nilai Min Max Tiap Kriteria Penilaian</CardTitle>
+              <div>V1 = V1(pembobotan)/ Nilai Pembagi NPM V1</div>
+              <div>V2 = V2(pembobotan)/ Nilai Pembagi NPM V2</div>
+              <div>V3 = V3(pembobotan)/ Nilai Pembagi NPM V3</div>
+              <div>V4 = V4(pembobotan)/ Nilai Pembagi NPM V4</div>
+              <div>V5 = V5(pembobotan)/ Nilai Pembagi NPM V5</div>
+            </CardBody>
+          </Card>
+        </Colxx>
         <Row>
           <Colxx xxs="12">
             <Card className="mb-4">
@@ -399,11 +444,44 @@ const ModalProccess = ({
             </Card>
           </Colxx>
         </Row>
+        <Colxx xxs="12">
+          <Card className="mb-4">
+            <CardBody>
+              <CardTitle>Nilai Mix & Max</CardTitle>
+              <div>
+                Nilai Min: Adalah nilai terendah di setiap kriteria (V1, V2, V3,
+                V4, V5)
+              </div>
+              <div>
+                Nilai Max: Adalah nilai tertinggi di setiap kriteria (V1, V2,
+                V3, V4, V5)
+              </div>
+              <hr />
+              <CardTitle>Rumus Topsis</CardTitle>
+              <div>
+                D+ = &radic; (V1-Nilai Max) <sup>2</sup>+ (V2-Nilai Max)
+                <sup>2</sup>
+                +(V3-Nilai Max)<sup>2</sup>+ (V4-Nilai Max)<sup>2</sup>+
+                (V5-Nilai Max)
+                <sup>2</sup>
+              </div>
+              <div>
+                D- = &radic; (V1-Nilai Min) <sup>2</sup>+ (V2-Nilai Min)
+                <sup>2</sup>
+                +(V3-Nilai Min)<sup>2</sup>+ (V4-Nilai Min)<sup>2</sup>+
+                (V5-Nilai Min)
+                <sup>2</sup>
+                <div>Topsis = D+/(D+ +D-)</div>
+              </div>
+            </CardBody>
+          </Card>
+        </Colxx>
+
         <Row>
           <Colxx xxs="12">
             <Card className="mb-4">
               <CardBody>
-                <CardTitle>Nilai D+,D- dan Value</CardTitle>
+                <CardTitle>Nilai D+,D- dan Topsis</CardTitle>
                 <Table bordered>
                   <thead>
                     <tr>
@@ -412,7 +490,7 @@ const ModalProccess = ({
                       <th>Cluster</th>
                       <th>D+</th>
                       <th>D-</th>
-                      <th>Value</th>
+                      <th>Topsis</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -420,7 +498,9 @@ const ModalProccess = ({
                       data.map((item, index) => (
                         <tr key={item._id}>
                           <th scope="row">{index + 1}</th>
-                          <td>{item.brand} - {item.type}</td>
+                          <td>
+                            {item.brand} - {item.type}
+                          </td>
                           <td>{item.cluster}</td>
                           <td>{item.topsis['D+']}</td>
                           <td>{item.topsis['D-']}</td>
@@ -430,6 +510,20 @@ const ModalProccess = ({
                   </tbody>
                 </Table>
               </CardBody>
+              <Alert color="secondary">
+                {`Hasil clustering menggunakan metode Kmeans, setiap clsuter
+                diwakili oleh penielai Topsis Terbaik setiap Cluster. penilain
+                Topis didapat dengan kalkulasi matematis dari kriteira Kamera
+                Depan dan Utama, RAM ,Memory dan Kapasitas Baterai. Dimana
+                handphone dengan merek  ${
+                  data && get(data, '[0].brand', '')
+                } - ${data && get(data, '[0].type', '')}
+                 Menjadi handphone Yang paling
+                di rekomendasikan karena memiliki nilai topsis ${
+                  data && get(data, '[0].topsis.topsis', '')
+                }, Yang
+                merupakan nilai topsis tertinggi`}
+              </Alert>
             </Card>
           </Colxx>
         </Row>

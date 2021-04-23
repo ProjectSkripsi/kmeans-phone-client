@@ -33,10 +33,6 @@ const ViewLogin = React.lazy(() =>
   import(/* webpackChunkName: "views-user" */ './views/user/login')
 );
 
-const Models = React.lazy(() =>
-  import(/* webpackChunkName: "views-error" */ './views/model/download')
-);
-
 const Recomendation = React.lazy(() =>
   import(/* webpackChunkName: "views-error" */ './views/model/recomendation')
 );
@@ -94,11 +90,7 @@ class App extends React.Component {
                     exact
                     render={(props) => <ViewUnauthorized {...props} />}
                   />
-                  <Route
-                    path="/download"
-                    exact
-                    render={(props) => <Models {...props} />}
-                  />
+
                   <Route
                     path="/recomendation"
                     exact

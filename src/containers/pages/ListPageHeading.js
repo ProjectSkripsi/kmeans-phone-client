@@ -51,7 +51,8 @@ const ListPageHeading = ({
   seeAll,
   isProcces,
   seeProccess,
-  isRecomd
+  isRecomd,
+  onClickSearch
 }) => {
   const [dropdownSplitOpen, setDropdownSplitOpen] = useState(false);
   const [displayOptionsIsOpen, setDisplayOptionsIsOpen] = useState(false);
@@ -187,6 +188,7 @@ const ListPageHeading = ({
                 </UncontrolledDropdown>
 								</>
               )}
+              {!isRecomd ?
               <div className="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
                 <input
                   type="text"
@@ -195,7 +197,10 @@ const ListPageHeading = ({
                   placeholder={messages['menu.search']}
                   onKeyPress={(e) => onSearchKey(e)}
                 />
-              </div>
+              </div> : 
+              <Button color="light" size="sm" className="mb-2" onClick={onClickSearch}>
+                <div className={`glyph-icon simple-icon-magnifier`} />
+              </Button>}
             </div>
             {isRecomd &&
             <div className="float-md-right pt-1">

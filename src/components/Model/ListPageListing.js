@@ -27,50 +27,61 @@ const ListPageListing = ({
 }) => {
   return (
     <Row>
-      {items.map((product) => {
-        if (displayMode === 'imagelist') {
+      {items.length > 0 ? 
+      <>
+        {items.map((product) => {
+          if (displayMode === 'imagelist') {
+            return (
+              <ImageListView
+                key={product._id}
+                product={product}
+                isSelect={selectedItems.includes(product._id)}
+                collect={collect}
+                onCheckItem={onCheckItem}
+                isAdmin={isAdmin}
+                toDetailModel={toDetailModel}
+                doUpdate={doUpdate}
+                onDownloadModel={onDownloadModel}
+              />
+            );
+          }
+          if (displayMode === 'thumblist') {
+            return (
+              <ThumbListView
+                key={product._id}
+                product={product}
+                isSelect={selectedItems.includes(product._id)}
+                collect={collect}
+                onCheckItem={onCheckItem}
+                toDetailModel={toDetailModel}
+                onDownloadModel={onDownloadModel}
+              />
+            );
+          }
           return (
-            <ImageListView
+            <DataListView
               key={product._id}
               product={product}
               isSelect={selectedItems.includes(product._id)}
-              collect={collect}
               onCheckItem={onCheckItem}
-              isAdmin={isAdmin}
-              toDetailModel={toDetailModel}
-              doUpdate={doUpdate}
-              onDownloadModel={onDownloadModel}
+              collect={collect}
             />
           );
-        }
-        if (displayMode === 'thumblist') {
-          return (
-            <ThumbListView
-              key={product._id}
-              product={product}
-              isSelect={selectedItems.includes(product._id)}
-              collect={collect}
-              onCheckItem={onCheckItem}
-              toDetailModel={toDetailModel}
-              onDownloadModel={onDownloadModel}
-            />
-          );
-        }
-        return (
-          <DataListView
-            key={product._id}
-            product={product}
-            isSelect={selectedItems.includes(product._id)}
-            onCheckItem={onCheckItem}
-            collect={collect}
-          />
-        );
-      })}
-      <Pagination
-        currentPage={currentPage}
-        totalPage={totalPage}
-        onChangePage={(i) => onChangePage(i)}
-      />
+        })}
+        <Pagination
+          currentPage={currentPage}
+          totalPage={totalPage}
+          onChangePage={(i) => onChangePage(i)}
+        />
+      </>
+      : (
+        <div className="container">
+          
+
+          Data Belum di temukan
+         
+        </div>
+      )}
       <ContextMenuContainer
         onContextMenuClick={onContextMenuClick}
         onContextMenu={onContextMenu}

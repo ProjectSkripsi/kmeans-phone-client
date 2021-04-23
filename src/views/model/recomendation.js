@@ -165,17 +165,14 @@ const Home = ({ match }) => {
         .then((data) => {
           setTotalPage(data.totalPage);
           setProccesData(data);
-          setItems(
-            data.data
-          )
-      
+          setItems(data.data)
           setSelectedItems([]);
           setTotalItemCount(data.totalItem);
           setIsLoaded(true);
         });
     }
     fetchData();
-  }, [selectedPageSize, currentPage, selectedPrice, search, selectedRam, selectedMemory]);
+  }, [selectedPageSize, currentPage]);
 
   const onCheckItem = (event, id) => {
     if (
@@ -212,6 +209,39 @@ const Home = ({ match }) => {
     document.activeElement.blur();
     return false;
   };
+
+  const onSearch =  () => {
+    setCurrentPage(1);
+    setIsLoaded(false)
+    // console.log('masuk', currentPage, isLoaded);
+    const price = selectedPrice && `?min=${selectedPrice.min}&max=${selectedPrice.max}`
+    const ram = selectedRam && `&ramMin=${selectedRam.min}&ramMax=${selectedRam.max}`
+    const memory = selectedMemory && `&memMin=${selectedMemory.min}&memMax=${selectedMemory.max}`
+    axios
+      .get(
+        `${baseUrl}/phone/recomendation/${selectedPageSize}/${currentPage}${price}${ram}${memory}`
+      )
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => {
+        // console.log(data);
+        setTotalPage(data.totalPage);
+        setProccesData(data);
+        setItems(data.data)
+        setSelectedItems([]);
+        setTotalItemCount(data.totalItem);
+        setIsLoaded(true);
+      })
+      .catch((err)=> {
+        setIsLoaded(true);
+        setTotalPage(0);
+        setItems([])
+        setSelectedItems([]);
+        setTotalItemCount(0);
+        setIsLoaded(true);
+      })
+  }
 
   const handleChangeSelectAll = (isToggle) => {
     if (selectedItems.length >= items.length) {
@@ -357,8 +387,8 @@ const Home = ({ match }) => {
               <div className="home-row" ref={refRowHome}>
                 {!isLoaded ? (
                   <div className="loading" />
-                ) : (
-                  <>
+                ) : 
+                  (<>
                     <div className="disable-text-selection">
                       <ListPageHeading
                         heading="menu.data-list"
@@ -398,7 +428,7 @@ const Home = ({ match }) => {
                         isOrder
                         priceOptions={priceOptions}
                         filterPrice={(column) => {
-                          setCurrentPage(1);
+                          
                           setSelectedPrice(
                             priceOptions.find((x) => x.column === column)
                           );
@@ -406,13 +436,13 @@ const Home = ({ match }) => {
                         selectedPrice={selectedPrice}
                         ramOptions={ramOptions}
                         filterRam={(column)=> {
-                          setCurrentPage(1);
+                          
                           setSelectedRam(ramOptions.find((x) => x.column === column))
                         }}
                         selectedRam={selectedRam}
                         memoryOptions={memoryOptions}
                         filterMemory={(column)=> {
-                          setCurrentPage(1);
+                          
                           setSelectedMemory(memoryOptions.find((x) => x.column === column))
                         }}
                         selectedMemory={selectedMemory}
@@ -422,6 +452,7 @@ const Home = ({ match }) => {
                           setIsOpenProccess(true);
                         }}
                         isRecomd
+                        onClickSearch={onSearch}
                       />
 
                       <ListPageListing

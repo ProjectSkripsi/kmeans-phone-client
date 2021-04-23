@@ -41,7 +41,7 @@ const ModalProccess = ({
                   <CardBody >
                     <CardTitle>Cluster {index+1} </CardTitle>
                     <div>
-                      CentroId : {item && item.centroid.map((cent)=> { return `${cent.toFixed(2)}, `})}
+                      CentroId : {item && item.centroid.map((cent)=> { return `${cent.toFixed(2) || '-'}, `})}
                     </div>
                     <hr/>
                     <div>

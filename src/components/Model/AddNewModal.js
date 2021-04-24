@@ -54,7 +54,7 @@ const AddNewModal = ({
           className="av-tooltip tooltip-label-right"
           onSubmit={(event, errors, values) => onSubmit(event, errors, values)}
         >
-          <AvGroup>
+          {/* <AvGroup>
             <Label>Brand</Label>
             <AvInput
               required
@@ -64,6 +64,34 @@ const AddNewModal = ({
               placeholder="Samsung, Apple, Xiaomi"
             />
             <AvFeedback>Wajib di isi!</AvFeedback>
+          </AvGroup> */}
+          <AvGroup>
+            <AvField
+              type="select"
+              name="brand"
+              required
+              label="OS"
+              errorMessage="Wajib di isi!"
+              onChange={onChange}
+              value={data.brand}
+            >
+              <option></option>
+              <option value="Apple">Apple</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Huawei">Huawei</option>
+              <option value="Xiaomi">Xiaomi</option>
+              <option value="Vivo">Vivo</option>
+              <option value="Oppo">Oppo</option>
+              <option value="Realme">Realme</option>
+              <option value="Lenovo">Lenovo</option>
+              <option value="Nokia">Nokia</option>
+              <option value="LG">LG</option>
+              <option value="Sony">Sony</option>
+              <option value="Asus">Asus</option>
+              <option value="Blackberry">Blackberry</option>
+              <option value="Siemens">Siemens</option>
+              <option value="Mito">Mito</option>
+            </AvField>
           </AvGroup>
           <AvGroup>
             <Label>Tipe</Label>
@@ -89,6 +117,9 @@ const AddNewModal = ({
               <option>-</option>
               <option value="ios">iOS</option>
               <option value="android">Android</option>
+              <option value="BBOS">BB-OS</option>
+              <option value="Symbian">Symbian</option>
+              <option value="Lainnya">Lainnya</option>
             </AvField>
           </AvGroup>
           <AvGroup>
@@ -113,7 +144,7 @@ const AddNewModal = ({
             />
             <AvFeedback>Wajib di isi!</AvFeedback>
           </AvGroup>
-          <AvGroup>
+          {/* <AvGroup>
             <Label>Memory</Label>
             <AvInput
               required
@@ -124,8 +155,8 @@ const AddNewModal = ({
               type="number"
             />
             <AvFeedback>Wajib di isi!</AvFeedback>
-          </AvGroup>
-          <AvGroup>
+          </AvGroup> */}
+          {/* <AvGroup>
             <Label>RAM</Label>
             <AvInput
               required
@@ -136,6 +167,51 @@ const AddNewModal = ({
               type="number"
             />
             <AvFeedback>Wajib di isi!</AvFeedback>
+          </AvGroup> */}
+          <AvGroup>
+            <AvField
+              type="select"
+              name="memory"
+              required
+              label="Memory"
+              errorMessage="Wajib di isi!"
+              onChange={onChange}
+              value={data.memory}
+            >
+              <option>-</option>
+              <option value={8}>8 GB</option>
+              <option value={16}>16 GB</option>
+              <option value={32}>32 GB</option>
+              <option value={64}>64 GB</option>
+              <option value={128}>128 GB</option>
+              <option value={256}>256 GB</option>
+              <option value={512}>512 GB</option>
+              <option value={1024}>1 TB</option>
+              <option value={2048}>2 TB</option>
+            </AvField>
+          </AvGroup>
+          <AvGroup>
+            <AvField
+              type="select"
+              name="ram"
+              required
+              label="RAM"
+              errorMessage="Wajib di isi!"
+              onChange={onChange}
+              value={data.ram}
+            >
+              <option>-</option>
+              <option value={2}>2 GB</option>
+              <option value={4}>4 GB</option>
+              <option value={6}>6 GB</option>
+              <option value={8}>8 GB</option>
+              <option value={16}>16 GB</option>
+              <option value={32}>32 GB</option>
+              <option value={64}>64 GB</option>
+              <option value={128}>128 GB</option>
+              <option value={256}>256 GB</option>
+              <option value={512}>512 GB</option>
+            </AvField>
           </AvGroup>
           <AvGroup>
             <Label>Ukuran Layar</Label>

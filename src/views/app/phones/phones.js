@@ -198,6 +198,8 @@ const DataListPages = ({
             setModalOpen(!modalOpen);
             fetchNew();
             createNotification('success', 'Berhasil menambahkan hp');
+          } else {
+            createNotification('error');
           }
         });
       } else {
